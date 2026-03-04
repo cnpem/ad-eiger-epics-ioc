@@ -1,21 +1,10 @@
 #!../../bin/linux-x86_64/Pilatus4
 
-#- You may have to change Pilatus4 to something else
-#- everywhere it appears in this file
-
 < envPaths
 
-cd "${TOP}"
+# IOC and device specific configuration
+epicsEnvSet("PREFIX", "BL:H:PILATUS4:")
 
-## Register all support components
-dbLoadDatabase "dbd/Pilatus4.dbd"
-Pilatus4_registerRecordDeviceDriver pdbbase
+< device.cmd
 
-## Load record instances
-#dbLoadRecords("db/Pilatus4.db","user=root")
-
-cd "${TOP}/iocBoot/${IOC}"
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=root"
