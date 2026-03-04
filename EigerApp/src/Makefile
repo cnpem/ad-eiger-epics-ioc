@@ -9,19 +9,16 @@ include $(TOP)/configure/CONFIG
 # Build the IOC application
 
 PROD_IOC = Eiger
-# Eiger.dbd will be created and installed
 DBD += Eiger.dbd
 
 # Eiger.dbd will be made up from these files:
 Eiger_DBD += base.dbd
+Eiger_DBD += eigerDetectorSupport.dbd
+Eiger_LIBS += eigerDetector
+Eiger_LIBS += dectrisCompression
+Eiger_LIBS += frozen
+Eiger_LIBS += tinyCBOR
 
-# Include dbd files from all support applications:
-#Eiger_DBD += xxx.dbd
-
-# Add all the support libraries needed by this IOC
-#Eiger_LIBS += xxx
-
-# Eiger_registerRecordDeviceDriver.cpp derives from Eiger.dbd
 Eiger_SRCS += Eiger_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
@@ -30,6 +27,9 @@ Eiger_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
 #Eiger_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+# Load libraries from common areaDetector plugins
+DBD_NAME = $(PROD_IOC)
+include $(ADCORE)/ADApp/commonDriverMakefile
 
 # Finally link to the EPICS Base libraries
 Eiger_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -39,4 +39,3 @@ Eiger_LIBS += $(EPICS_BASE_IOC_LIBS)
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

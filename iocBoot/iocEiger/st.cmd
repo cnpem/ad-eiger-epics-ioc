@@ -1,21 +1,12 @@
 #!../../bin/linux-x86_64/Eiger
 
-#- You may have to change Eiger to something else
-#- everywhere it appears in this file
-
 < envPaths
 
-cd "${TOP}"
+# IOC and device specific configuration
+epicsEnvSet("PREFIX", "MNC:B:PILATUS4_4M:")
+epicsEnvSet("IP_ADDRESS", "10.31.71.19")
+epicsEnvSet("DEV_TEMPLATE", "pilatus4.template")
 
-## Register all support components
-dbLoadDatabase "dbd/Eiger.dbd"
-Eiger_registerRecordDeviceDriver pdbbase
+< device.cmd
 
-## Load record instances
-#dbLoadRecords("db/Eiger.db","user=root")
-
-cd "${TOP}/iocBoot/${IOC}"
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=root"
