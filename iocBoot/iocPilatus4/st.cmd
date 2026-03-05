@@ -13,4 +13,11 @@ epicsEnvSet("PREFIX", "BL:H:PILATUS4:")
 
 < device.cmd
 
+# Configure Area Detector plugins
+epicsEnvSet("MAX_IMAGE_WIDTH",  1030)
+epicsEnvSet("MAX_IMAGE_HEIGHT",  1065)
+epicsEnvSet("MAX_IMAGE_PIXELS", 1096950)
+
+< plugins.cmd
+
 iocInit
