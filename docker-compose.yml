@@ -1,0 +1,13 @@
+services:
+  ioc:
+    image: ghcr.io/cnpem/ad-pilatus4-epics-ioc:${TAG}
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+      target: dynamic-link
+      labels:
+        org.opencontainers.image.source: https://github.com/cnpem/ad-pilatus4-epics-ioc
+      args:
+        REPONAME: ad-pilatus4-epics-ioc
+        RUNDIR: /opt/ad-pilatus4-epics-ioc/iocBoot/iocPilatus4
+        RUNTIME_PACKAGES: libxml2 libtiff6 libzmq5
