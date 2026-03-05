@@ -1,0 +1,13 @@
+services:
+  ioc:
+    image: ghcr.io/cnpem/ad-eiger-epics-ioc:${TAG}
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+      target: dynamic-link
+      labels:
+        org.opencontainers.image.source: https://github.com/cnpem/ad-eiger-epics-ioc
+      args:
+        REPONAME: ad-eiger-epics-ioc
+        RUNDIR: /opt/ad-eiger-epics-ioc/iocBoot/iocEiger
+        RUNTIME_PACKAGES: libxml2 libtiff6 libzmq5

@@ -1,4 +1,9 @@
-#!../../bin/linux-x86_64/Eiger
+#!/opt/ad-eiger-epics-ioc/bin/linux-x86_64/Eiger
+# -*- container-image: ghcr.io/cnpem/ad-eiger-epics-ioc
+# -*- mount: /ibira:/ibira
+# -*- log!
+
+cd /opt/ad-eiger-epics-ioc/iocBoot/iocEiger
 
 < envPaths
 
