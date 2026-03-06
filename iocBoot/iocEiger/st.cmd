@@ -18,7 +18,10 @@ epicsEnvSet("DEV_TEMPLATE", "pilatus4.template")
 epicsEnvSet("MAX_IMAGE_WIDTH", 2073)
 epicsEnvSet("MAX_IMAGE_HEIGHT", 2180)
 epicsEnvSet("MAX_IMAGE_PIXELS", 4519140)
+epicsEnvSet("HDF5_FORMAT", "Legacy")
 
 < plugins.cmd
 
 iocInit
+
+< setup-pipeline.cmd
