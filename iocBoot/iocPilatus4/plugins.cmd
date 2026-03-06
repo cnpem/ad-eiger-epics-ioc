@@ -35,7 +35,7 @@
 epicsEnvSet("IMAGE_ASYN_TYPE", "$(IMAGE_ASYN_TYPE=Int16)")
 epicsEnvSet("IMAGE_WAVEFORM_TYPE", "$(IMAGE_WAVEFORM_TYPE=SHORT)")
 epicsEnvSet("QSIZE", "$(QSIZE=20)")
-epicsEnvSet("QSIZE_HDF5", "$(QSIZE_HDF5=50)")
+epicsEnvSet("QSIZE_HDF5", "$(QSIZE_HDF5=1000)")
 epicsEnvSet("MAX_THREADS", "$(MAX_THREADS=4)")
 
 # Create Codec plugins
@@ -44,11 +44,11 @@ dbLoadRecords("NDCodec.template", "P=$(PREFIX), R=Codec1:, PORT=CODEC1, ADDR=0, 
 
 # Create ROI plugin
 NDROIConfigure("ROI1", $(QSIZE), 0, "$(PORT)", 0, 0, 0, 0, 0, $(MAX_THREADS))
-dbLoadRecords("NDROI.template", "P=$(PREFIX), R=ROI1:, PORT=ROI1, ADDR=0, TIMEOUT=1, NDARRAY_PORT=$(PORT)")
+dbLoadRecords("NDROI.template", "P=$(PREFIX), R=ROI1:, PORT=ROI1, ADDR=0, TIMEOUT=1, NDARRAY_PORT=CODEC1")
 
 # Create Channel Access conversion plugin
 NDStdArraysConfigure("Image1", $(QSIZE), 0, $(PORT), 0, 0, 0, 0)
-dbLoadRecords("NDStdArrays.template", "P=$(PREFIX), R=image1:, PORT=Image1, ADDR=0, TIMEOUT=1, NDARRAY_PORT=$(PORT), TYPE=$(IMAGE_ASYN_TYPE), FTVL=$(IMAGE_WAVEFORM_TYPE), NELEMENTS=$(MAX_IMAGE_PIXELS)")
+dbLoadRecords("NDStdArrays.template", "P=$(PREFIX), R=image1:, PORT=Image1, ADDR=0, TIMEOUT=1, NDARRAY_PORT=ROI1, TYPE=$(IMAGE_ASYN_TYPE), FTVL=$(IMAGE_WAVEFORM_TYPE), NELEMENTS=$(MAX_IMAGE_PIXELS)")
 
 # Configure HDF5 file format plugin
 NDFileHDF5Configure("FileHDF1", $(QSIZE_HDF5), 0, "$(PORT)", 0)
