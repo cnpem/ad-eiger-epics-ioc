@@ -25,3 +25,5 @@ asynSetTraceMask("$(PORT)", 0, ERROR | WARNING)
 
 # Use larger callback queue to account for the high number of PVs
 callbackSetQueueSize(5000)
+
+afterIocRunning "dbpf $(PREFIX)cam1:ReadStatus.SCAN '5 second'"
