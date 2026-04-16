@@ -1,4 +1,4 @@
-dbpf "$(PREFIX)cam1:DataSource" "FileWriter"
+dbpf "$(PREFIX)cam1:DataSource" "$(DATA_SOURCE=FileWriter)"
 dbpf "$(PREFIX)cam1:StreamDecompress" "Disable"
 dbpf "$(PREFIX)cam1:CompressionAlgo" "BS LZ4"
 
