@@ -13,6 +13,7 @@ DBD += Eiger.dbd
 
 # Eiger.dbd will be made up from these files:
 Eiger_DBD += base.dbd
+Eiger_DBD += system.dbd
 Eiger_DBD += eigerDetectorSupport.dbd
 Eiger_LIBS += eigerDetector
 Eiger_LIBS += dectrisCompression
