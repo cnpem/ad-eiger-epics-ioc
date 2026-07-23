@@ -10,4 +10,4 @@ services:
       args:
         REPONAME: ad-eiger-epics-ioc
         RUNDIR: /opt/ad-eiger-epics-ioc/iocBoot/iocEiger
-        RUNTIME_PACKAGES: libxml2 libtiff6 libzmq5
+        RUNTIME_PACKAGES: libxml2 libtiff6 libzmq5 curl
